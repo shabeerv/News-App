@@ -38,3 +38,22 @@ npm install npm@latest -g
    ```sh
    npm start
    ```
+### Installation of fake-api-jwt-json-server
+
+1. Clone the repository locally with the git command:
+
+   ```sh
+   git clone https://github.com/techiediaries/fake-api-jwt-json-server.git
+   ```
+
+2. Install NPM packages:
+
+   ```sh
+   npm install
+   ```
+
+3. Run the server with command:
+
+   ```sh
+   npm run start-auth
+   ```
