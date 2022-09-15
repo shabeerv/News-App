@@ -32,13 +32,15 @@ export default function ArticleCard() {
       style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
     >
       <Card sx={{ maxWidth: 800 }}>
-        <CardMedia component="img" height="" width="" image="" />
+        <CardMedia component="img" src={articleList.multimedia?.[0]?.url ?
+                        `https://nyt.com/${articleList.multimedia[0].url}` : 'https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg'
+                    } alt="news-img" />
         <CardContent>
           <Typography component="h1" variant="h3" gutterBottom>
             {articleList.title}
           </Typography>
           <Typography variant="caption" gutterBottom>
-            {articleList.section} news - {articleList.byline} - Published on:{" "}
+            {articleList.section} news - {articleList.byline} - Published on:
             {articleList.published_date}
           </Typography>
           <Divider />

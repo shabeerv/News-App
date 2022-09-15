@@ -50,6 +50,16 @@ export default function ListStories() {
     return request;
   };
   React.useEffect(() => {
+    const getNews = async (type) => {
+      const request = await fetchWorldNews(type);
+      console.log(request.results);
+      if (type === "world") {
+        setWorldNews(request.results);
+      } else {
+        setScienceNews(request.results);
+      }
+      return request;
+    };
     getNews("world");
   }, []);
   return (

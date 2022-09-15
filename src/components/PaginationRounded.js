@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 
 export default function PaginationRounded({ onPageChange }) {
   const handlePageChange = (pageNumber) => {
-    // console.log(parseInt(pageNumber.target.innerText));
+    console.log(parseInt(pageNumber.target.innerText));
     onPageChange(parseInt(pageNumber.target.innerText));
   };
 

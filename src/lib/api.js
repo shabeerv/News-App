@@ -23,7 +23,7 @@ export const searchArticle = async (query, page) => {
 
   var config = {
     method: "get",
-    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}`,
+    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${process.env.REACT_APP_NYTIMES_API_KEY}&page=${page}`,
     headers: {},
   };
 

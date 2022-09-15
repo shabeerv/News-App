@@ -19,6 +19,7 @@ export default function Search() {
   const [text, setText] = React.useState("");
   const [state, setState] = React.useState([]);
   const [result, setResult] = React.useState([]);
+  const [pagination, setPagination] = React.useState(false);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -29,9 +30,9 @@ export default function Search() {
     await getSearchResults(pageNo);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    getSearchResults(1);
+    await getSearchResults(1);
 
     const historyList = JSON.parse(localStorage.getItem("history"));
     if (text.length !== 0) {
@@ -44,6 +45,9 @@ export default function Search() {
       console.log(newHistoryList);
       setState(newHistoryList);
     }
+
+    setPagination(true);
+
     return;
   };
 
@@ -121,7 +125,7 @@ export default function Search() {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {result.map((card) => (
-              <Grid item key={card.web_url} xs={12} sm={6} md={6}>
+              <Grid item key={card._id} xs={12} sm={6} md={6}>
                 <Card
                   sx={{
                     height: "100%",
@@ -131,22 +135,31 @@ export default function Search() {
                 >
                   <CardMedia
                     component="img"
-                    height="300"
                     width="300"
-                    image={`${webURL}${card.multimedia[0].url}`}
-                    alt="random"
+                    height="300"
+                    src={
+                      card.multimedia?.[0]?.url
+                        ? `${webURL}${card.multimedia[0]?.url}`
+                        : "https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg"
+                    }
+                    alt="News Image"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography variant="h6" gutterBottom>
-                      {card.snippet}
+                      {card.headline.main}
                     </Typography>
+                    <Typography color="textSecondary" variant="caption">
+                      {card.byline.original} - section: {card.section_name} - published on: {card.pub_date}
+                    </Typography>
+                    {/* <Typography color="textSecondary" variant="subtitle2">
+                      {card.byline.original}
+                    </Typography>
+                    <Typography color="textSecondary" variant="subtitle2">
+                      {card.byline.original}
+                    </Typography> */}
                     <Divider />
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      paragraph
-                    >
-                      {card.lead_paragraph}
+                    <Typography variant="body2" component="p">
+                      {card.snippet}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -159,7 +172,7 @@ export default function Search() {
             ))}
           </Grid>
         </Container>
-        <PaginationRounded onPageChange={onPageChangeHandler} />
+        {pagination && <PaginationRounded onPageChange={onPageChangeHandler} />}
       </main>
     </div>
   );

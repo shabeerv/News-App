@@ -20,8 +20,8 @@ export default function BasicCard({ data }) {
       {data.map((items) => {
         if (items.title.length !== 0) {
           return (
-            <>
-              <Card variant="outlined" key={items.url} sx={{ minWidth: 300 }}>
+            <div key={items.url} >
+              <Card variant="outlined"  sx={{ minWidth: 300 }}>
                 <CardContent>
                   <Typography variant="h5" component="div">
                     {items.title}
@@ -29,7 +29,6 @@ export default function BasicCard({ data }) {
                 </CardContent>
                 <CardActions>
                   <Button
-                    key={items.url}
                     size="small"
                     onClick={() => {
                       readMoreClickHandler(items);
@@ -40,7 +39,7 @@ export default function BasicCard({ data }) {
                 </CardActions>
               </Card>
               <br />
-            </>
+            </div>
           );
         }
         return null;
