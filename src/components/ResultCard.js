@@ -20,8 +20,8 @@ export default function BasicCard({ data }) {
       {data.map((items) => {
         if (items.title.length !== 0) {
           return (
-            <div key={items.url} >
-              <Card variant="outlined"  sx={{ minWidth: 300 }}>
+            <div key={items.url}>
+              <Card variant="outlined" sx={{ minWidth: 300 }}>
                 <CardContent>
                   <Typography variant="h5" component="div">
                     {items.title}

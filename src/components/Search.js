@@ -149,14 +149,9 @@ export default function Search() {
                       {card.headline.main}
                     </Typography>
                     <Typography color="textSecondary" variant="caption">
-                      {card.byline.original} - section: {card.section_name} - published on: {card.pub_date}
+                      {card.byline.original} - section: {card.section_name} -
+                      published on: {card.pub_date}
                     </Typography>
-                    {/* <Typography color="textSecondary" variant="subtitle2">
-                      {card.byline.original}
-                    </Typography>
-                    <Typography color="textSecondary" variant="subtitle2">
-                      {card.byline.original}
-                    </Typography> */}
                     <Divider />
                     <Typography variant="body2" component="p">
                       {card.snippet}

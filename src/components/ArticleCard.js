@@ -10,7 +10,6 @@ export default function ArticleCard() {
   const [articleList, setArticleList] = React.useState({});
   const [comments, setComments] = React.useState([]);
 
-
   React.useEffect(() => {
     const getArticleCard = async () => {
       const articles = await JSON.parse(localStorage.getItem("article"));
@@ -24,16 +23,20 @@ export default function ArticleCard() {
     getAllComments();
   }, []);
 
-  //console.log(articleList.multimedia[0]);
-
   return (
     <div
       style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
     >
       <Card sx={{ maxWidth: 800 }}>
-        <CardMedia component="img" src={articleList.multimedia?.[0]?.url ?
-                        `https://nyt.com/${articleList.multimedia[0].url}` : 'https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg'
-                    } alt="news-img" />
+        <CardMedia
+          component="img"
+          src={
+            articleList.multimedia?.[0]?.url
+              ? `https://nyt.com/${articleList.multimedia[0].url}`
+              : "https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg"
+          }
+          alt="news-img"
+        />
         <CardContent>
           <Typography component="h1" variant="h3" gutterBottom>
             {articleList.title}
