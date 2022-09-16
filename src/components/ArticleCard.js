@@ -10,20 +10,19 @@ export default function ArticleCard() {
   const [articleList, setArticleList] = React.useState({});
   const [comments, setComments] = React.useState([]);
 
-  const getAllComments = async () => {
-    const commentsList = await getComments();
-    setComments(commentsList.comments);
-  };
 
   React.useEffect(() => {
+    const getArticleCard = async () => {
+      const articles = await JSON.parse(localStorage.getItem("article"));
+      setArticleList(articles);
+    };
+    const getAllComments = async () => {
+      const commentsList = await getComments();
+      setComments(commentsList.comments);
+    };
     getArticleCard();
     getAllComments();
   }, []);
-
-  const getArticleCard = async () => {
-    const articles = await JSON.parse(localStorage.getItem("article"));
-    setArticleList(articles);
-  };
 
   //console.log(articleList.multimedia[0]);
 
